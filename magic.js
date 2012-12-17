@@ -1,4 +1,4 @@
-var bugzilla = bz.createClient();
+var moztasks = moztasks.createClient();
 
 var categoryMapping = {};
 var groups = {};
@@ -282,6 +282,7 @@ function rebuildTableContents() {
     var inner = document.createElement('span');
     var link = document.createElement('a');
     elem.setAttribute('tabindex', '0');
+    var url = "https://github.com/jdm/moztasks/issues";
     link.setAttribute('href', url);
     link.setAttribute('target', "_blank");
     var text = document.createTextNode(bug.id);
