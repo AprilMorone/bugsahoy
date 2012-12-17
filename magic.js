@@ -282,7 +282,6 @@ function rebuildTableContents() {
     var inner = document.createElement('span');
     var link = document.createElement('a');
     elem.setAttribute('tabindex', '0');
-    var url = bug.html_url || "http://bugzil.la/" + bug.id;
     link.setAttribute('href', url);
     link.setAttribute('target', "_blank");
     var text = document.createTextNode(bug.id);
@@ -401,8 +400,7 @@ function retrieveResults(category) {
           searchParams[param].push(mapping[i][param][j]);
       }
     }
-    bugzilla.searchBugs(searchParams, processResult);
-  }
+   
   
   for (var i = 0; i < ghMapping.length; i++) {
     (function(i) {
