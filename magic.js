@@ -15,25 +15,11 @@ function addSearchMapping(group, cat, searchParams) {
   groups[group].push(cat);
 }
 
-function addSimpleMapping(group, cat, prod, components) {
-  var params = {product: prod};
-  if (components) {
-    if (typeof(components) == "string")
-      components = [components];
-    params.component = components;
-  }
-  addSearchMapping(group, cat, params);
-}
-
 function timeFromModified(lastChangeTime) {
 	var lastModified = new Date(lastChangeTime);
 	var today = new Date();
 	var one_day = 1000*60*60*24;
 	return(Math.ceil((today.getTime() - lastModified.getTime()) / (one_day)));
-}
-
-function addComponentMapping(cat, prod, components) {
-  addSimpleMapping('components', cat, prod, components);
 }
 
 function addLanguageMapping(cat, language) {
@@ -61,131 +47,6 @@ function addGithubMapping(group, cat, repos, tags) {
   
   groups[group].push(cat);
 }
-
-function addGithubComponentMapping(cat, repos, tags) {
-  addGithubMapping('components', cat, repos, tags);
-}
-
-addComponentMapping('a11y', 'Core', 'Disability Access APIs');
-addComponentMapping('build', 'Core', ['Build Config']);
-addComponentMapping('build', 'MailNews Core', ['Build Config']);
-addComponentMapping('gfx', 'Core',
-                    ['Graphics', 'GFX: Color Management',
-                     'Canvas: WebGL', 'Canvas: 2D', 'ImageLib', 'Graphics',
-                     'Graphics: Layers', 'Graphics: Text']);
-addComponentMapping('net', 'Core',
-                    ['Networking',
-                     'Networking: HTTP',
-                     'Networking: Cookies',
-                     'Networking: File',
-                     'Networking: JAR',
-                     'Networking: WebSockets',
-                     'Networking: DNS',
-                     'WebRTC: Networking']);
-addComponentMapping('layout', 'Core',
-                    ['Layout',
-                     'Layout: Block and Inline',
-                     'Layout: Floats',
-                     'Layout: Form Controls',
-                     'Layout: HTML Frames',
-                     'Layout: Images',
-                     'Layout: Misc Code',
-                     'Layout: R & A Pos',
-                     'Layout: Tables',
-                     'Layout: Text',
-                     'Layout: View Rendering']);
-addComponentMapping('dom', 'Core',
-                    ['Style System (CSS)',
-                     'SVG', 'DOM',
-                     'DOM: Core & HTML',
-                     'DOM: CSS Object Model',
-                     'DOM: Device Interfaces',
-                     'DOM: Events',
-                     'DOM: IndexedDB',
-                     'DOM: Mozilla Extensions',
-                     'DOM: Other',
-                     'DOM: Traversal-Range',
-                     'DOM: Validation',
-                     'DOM: Workers',
-                     'Geolocation',
-                     'HTML: Form Submission',
-                     'Event Handling', 'HTML: Parser',
-                     'MathML', 'XML', 'XSLT']);
-addComponentMapping('editor', 'Core', ['Editor', 'Selection', 'Keyboard: Navigation',
-                                       'Drag and Drop', 'Spelling Checker']);
-addComponentMapping('internals', 'Core', ['General', 'Widget', 'Document Navigation', 'XPCOM',
-                                          'Embedding: APIs', 'Embedding: GRE Core', 'Embedding: GTK Widget',
-                                          'Embedding: Mac', 'Embedding: Packaging',
-                                          'File Handling', 'Find Backend', 'Gecko Profiler',
-                                          'History (Global)', 'Image Blocking', 'Installer', 'IPC',
-                                          'MFBT', 'Plug-ins', 'Preferences: Backend', 'Print Preview',
-                                          'Printing: Output', 'Printing: Setup', 'Profile: BackEnd',
-                                          'Profile: Migration', 'Profile: Roaming', 'RDF',
-                                          'Rewriting and Analysis', 'Security', 'Security: CAPS', 'Security: PSM',
-                                          'Security: S/MIME', 'Security: UI',
-                                          'Serializers', 'SQL', 'String', 'XBL', 'XTF', 'XUL',
-                                          'Widget', 'Widget: Android', 'Widget: BeOS', 'Widget: Cocoa',
-                                          'Widget: Gtk', 'Widget: OS/2', 'Widget: Photon', 'Widget: Qt',
-                                          'Widget: Win32', 'XP Toolkit/Widgets: XUL', 'XP Toolkit/Widgets: Menus',
-                                          'Identity', 'Localization']);
-addComponentMapping('internals', 'NSPR');
-addComponentMapping('internals', 'NSS');
-addComponentMapping('mobile', 'Fennec');
-addComponentMapping('mobile', 'Firefox for Android');
-addComponentMapping('mobile', 'Core', ['Widget: Android', 'mozglue']);
-addComponentMapping('jseng', 'Core',
-                    ['Javascript Engine',
-                     'js-ctypes',
-                     'XPConnect',
-                     'Nanojit']);
-addComponentMapping('media', 'Core', ['Video/Audio', 'WebRTC', 'WebRTC: Audio/Video',
-                                      'WebRTC: Signalling']);
-addComponentMapping('ff', 'Firefox');
-addComponentMapping('ff', 'Toolkit');
-addComponentMapping('ff', 'Mozilla Services', 'Firefox Sync: UI');
-addComponentMapping('ff', 'Input', ['Frontend', 'General']);
-addComponentMapping('devtools', 'Firefox',
-                    ['Developer Tools',
-                     'Developer Tools: Console',
-                     'Developer Tools: Debugger',
-                     'Developer Tools: Inspector',
-                     'Developer Tools: Scratchpad',
-                     'Developer Tools: Style Editor']);
-addComponentMapping('releng', 'mozilla.org', ['Release Engineering',
-                                              'Release Engineering: Automation (General)',
-                                              'Release Engineering: Developer Tools',
-                                              'Hg: Customizations']);
-addComponentMapping('automation', 'Testing');
-addGithubComponentMapping('automation', ['automatedtester/automation-services-bot',
-                                         'automatedtester/powerball-platform',
-                                         'automatedtester/testdaybot',
-                                         'automatedtester/unittest-zero',
-                                         'davehunt/flynnid',
-                                         'davehunt/pytest-mozwebqa',
-                                         'mozilla/bidpom',
-                                         'mozilla/memchaser',
-                                         'mozilla/moz-grid-config',
-                                         'mozilla/mozdownload',
-                                         'mozilla/mozmill-ci',
-                                         'mozilla/nightlytt',
-                                         'whimboo/mozmill-automation',
-                                         'whimboo/mozmill-crowd',
-                                         'whimboo/mozmill-dashboard',
-                                         'whimboo/mozmill-environment'], 'mentored');
-addComponentMapping('sync', 'Mozilla Services', ['Firefox Sync: Backend',
-                                                 'Firefox Sync: Build',
-                                                 'Firefox Sync: Crypto',
-                                                 'Firefox Sync: UI',
-                                                 'Android Sync',
-                                                 'Server: Sync']);
-addComponentMapping('thunderbird', 'Thunderbird');
-addComponentMapping('thunderbird', 'MailNews Core');
-addComponentMapping('seamonkey', 'SeaMonkey');
-addComponentMapping('calendar', 'Calendar');
-addComponentMapping('b2g', 'Boot2Gecko');
-addComponentMapping('b2g', 'Core', ['DOM: Device Interfaces', 'Hardware Abstraction Layer (HAL)']);
-addGithubComponentMapping('b2g', 'mozilla-b2g/gaia', 'mentored');
-addComponentMapping('metro', 'Firefox for Metro');
 
 addLanguageMapping('py', 'py');
 addLanguageMapping('sh', 'shell');
